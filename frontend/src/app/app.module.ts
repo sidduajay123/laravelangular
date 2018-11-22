@@ -9,6 +9,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { from } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
+import { RequestRestComponent } from './components/password/request-rest/request-rest.component';
+import { ResponseRestComponent } from './components/password/response-rest/response-rest.component';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 @NgModule({
   declarations: [
@@ -16,15 +19,19 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    RequestRestComponent,
+    ResponseRestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SnotifyModule
   ],
-  providers: [],
+  providers: [{ provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+  SnotifyService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
