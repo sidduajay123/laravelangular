@@ -22,6 +22,7 @@ export class RequestRestComponent implements OnInit {
   }
 
   onSubmit(){
+    this.notify.info("wait...",{timeout:5000});
     this.Jarwis.sendPasswordResetLink(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.notify.error(error.error.error)
@@ -30,7 +31,7 @@ export class RequestRestComponent implements OnInit {
   }
 
   handleResponse(res){
-    console.log(res);
+    this.notify.success(res.data,{timeout:0});
     this.form.email = null;
   }
 

@@ -32,10 +32,11 @@ class ResetPasswordController extends Controller
         $oldToken = DB::collection('password_resets')->where('email',$email)->first();
 
         if ($oldToken) {
-            return $oldToken;
+            return $oldToken['token'];
         }
         $token = str_random(60);
         $this->saveToken($token,$email);
+        return $token;
     }
 
     public function saveToken($token,$email){

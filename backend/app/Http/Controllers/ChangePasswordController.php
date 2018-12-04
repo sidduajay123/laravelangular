@@ -21,8 +21,10 @@ class ChangePasswordController extends Controller
 
     private function changePassword($request)
     {
+        // return $request->password;
         $user = User::whereEmail($request->email)->first();
-        $user->update(['password'=> ($request->pasword)]);
+        $user->update(['password'=> $request->password]);
+        //return $user;
         $this->getPasswordToken($request)->delete();
         return response()->json(['data'=>'Password Successfully Changed'],Response::HTTP_CREATED);
     }
